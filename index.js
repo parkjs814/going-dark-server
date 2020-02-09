@@ -1,7 +1,12 @@
-const app = require('http').createServer();
+const fs = require('fs');
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/launchyourownchinesemissle.space/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/launchyourownchinesemissle.space/cert.pem'),
+};
+const app = require('http').createServer(options);
 const io = require('socket.io')(app);
 
-app.listen(80);
+app.listen(8080);
 
 const ROOM_LOBBY = '1@bby';
 const games = [];
