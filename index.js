@@ -6,7 +6,7 @@ const options = {
 const app = require('http').createServer(options);
 const io = require('socket.io')(app);
 
-app.listen(8080);
+app.listen(443);
 
 const ROOM_LOBBY = '1@bby';
 const games = [];
