@@ -1,7 +1,7 @@
 const app = require('http').createServer();
 const io = require('socket.io')(app);
 
-app.listen(8080);
+app.listen(80);
 
 const ROOM_LOBBY = '1@bby';
 const games = [];
