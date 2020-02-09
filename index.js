@@ -38,13 +38,20 @@ io.on('connection', function (socket) {
     socket.broadcast.to(gameId).emit('updateMap', i, j, value);
   });
   socket.on('updateUser', (gameId, updatedUser) => {
-    console.log('user updated.', Math.random());
     const game = games.find(game => game.id === gameId);
     if (!game) return;
     const user = game.users.find(user => user.uuid === updatedUser.uuid);
     if (!user) return;
     Object.assign(user, updatedUser);
     socket.broadcast.to(gameId).emit('updateUser', updatedUser);
+  });
+  socket.on('updateTeam', (gameId, updatedTeam) => {
+    const game = games.find(game => game.id === gameId);
+    if (!game) return;
+    const team = game.teams.find(team => team.id === updatedTeam.id);
+    if (!team) return;
+    Object.assign(team, updatedTeam);
+    socket.broadcast.to(gameId).emit('updateTeam', updatedTeam);
   });
   setInterval(() => {
     const gameIds = games.map(game => game.id);
